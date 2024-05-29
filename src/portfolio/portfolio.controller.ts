@@ -7,18 +7,16 @@ import { Portfolio } from 'src/entities/portfolio.entiy';
 @ApiTags('portfolio')
 @Controller('portfolio')
 export class PortfolioController {
-    constructor(
-        private readonly portfolioService: PortfolioService
-    ) { }
-    @Get()
-    @ApiOkResponse({ type: Portfolio })
-    async get() {
-        return this.portfolioService.get();
-    }
+  constructor(private readonly portfolioService: PortfolioService) {}
+  @Get()
+  @ApiOkResponse({ type: Portfolio })
+  async get() {
+    return this.portfolioService.get();
+  }
 
-    @Patch()
-    @ApiBody(({ type: UpdatePortfolioDto }))
-    async update(@Body() updateData: UpdatePortfolioDto) {
-        return this.portfolioService.update(updateData);
-    }
+  @Patch()
+  @ApiBody({ type: UpdatePortfolioDto })
+  async update(@Body() updateData: UpdatePortfolioDto) {
+    return this.portfolioService.update(updateData);
+  }
 }

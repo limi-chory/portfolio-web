@@ -1,35 +1,35 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
-import { Skills } from "./skills.entity";
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Skills } from './skills.entity';
 
 @Entity()
 export class Portfolio {
-    @PrimaryColumn()
-    id: number;
+  @PrimaryColumn()
+  id: number;
 
-    @Column()
-    title: string;
+  @Column()
+  title: string;
 
-    @Column()
-    contents: string;
+  @Column()
+  contents: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    birth: string;
+  @Column()
+  birth: string;
 
-    @Column()
-    locate: string;
+  @Column()
+  locate: string;
 
-    @Column()
-    graduated: string;
+  @Column()
+  graduated: string;
 
-    @Column()
-    eMail: string;
+  @Column()
+  eMail: string;
 
-    @OneToMany(() => Skills, skills => skills.portfolio)
-    skills: Skills[];
+  @OneToMany(() => Skills, (skills) => skills.portfolio)
+  skills: Skills[];
 
-    @Column()
-    gitUrl: string;
+  @Column()
+  gitUrl: string;
 }

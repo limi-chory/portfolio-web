@@ -7,28 +7,28 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('report')
 @Controller('reports')
 export class ReportsController {
-    constructor(
-        private readonly reportService: ReportsService,
-        private readonly guest_bookService: Guest_BooksService
-    ) { }
+  constructor(
+    private readonly reportService: ReportsService,
+    private readonly guest_bookService: Guest_BooksService,
+  ) {}
 
-    @Get()
-    async getAll() {
-        return this.reportService.get();
-    }
+  @Get()
+  async getAll() {
+    return this.reportService.get();
+  }
 
-    @Get()
-    async getNotReviewed() {
-        return this.reportService.getNotReviewed();
-    }
+  @Get()
+  async getNotReviewed() {
+    return this.reportService.getNotReviewed();
+  }
 
-    @Post()
-    async createReport(@Body() reportDto: ReportDto) {
-        return await this.reportService.report(reportDto);
-    }
+  @Post()
+  async createReport(@Body() reportDto: ReportDto) {
+    return await this.reportService.report(reportDto);
+  }
 
-    @Patch(':id')
-    async restore(@Param() id: number) {
-        return this.reportService.restorePost(id);
-    }
+  @Patch(':id')
+  async restore(@Param() id: number) {
+    return this.reportService.restorePost(id);
+  }
 }

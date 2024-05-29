@@ -7,8 +7,8 @@ import { Portfolio } from 'src/entities/portfolio.entiy';
 import { PortfolioService } from 'src/portfolio/portfolio.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Skills, Portfolio])],
-    controllers: [SkillsController],
-    providers: [SkillsService, PortfolioService]
+  imports: [TypeOrmModule.forFeature([Skills, Portfolio])],
+  controllers: [SkillsController],
+  providers: [SkillsService, PortfolioService],
 })
-export class SkillsModule { }
+export class SkillsModule {}

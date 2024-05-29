@@ -6,22 +6,27 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class PortfolioService {
-    constructor(
-        @InjectRepository(Portfolio)
-        private readonly portfolioRepository: Repository<Portfolio>,
-    ) { }
+  constructor(
+    @InjectRepository(Portfolio)
+    private readonly portfolioRepository: Repository<Portfolio>,
+  ) {}
 
-    async get() {
-        return this.portfolioRepository.findOne({ where: { id: 1 }, relations: ['skills'] });
-    }
+  async get() {
+    return this.portfolioRepository.findOne({
+      where: { id: 1 },
+      relations: ['skills'],
+    });
+  }
 
-    async getOne() {
-        return this.portfolioRepository.findOne({ where: { id: 1 } });
-    }
+  async getOne() {
+    return this.portfolioRepository.findOne({ where: { id: 1 } });
+  }
 
-    async update(updateData: UpdatePortfolioDto, id: number = 1) {
-        const curPortfolio = await this.portfolioRepository.findOne({ where: { id } });
-        const updatedPortfolio = { ...curPortfolio, ...updateData }
-        return this.portfolioRepository.save(updatedPortfolio);
-    }
+  async update(updateData: UpdatePortfolioDto, id: number = 1) {
+    const curPortfolio = await this.portfolioRepository.findOne({
+      where: { id },
+    });
+    const updatedPortfolio = { ...curPortfolio, ...updateData };
+    return this.portfolioRepository.save(updatedPortfolio);
+  }
 }

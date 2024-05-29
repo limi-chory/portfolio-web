@@ -9,41 +9,45 @@ import config from 'src/config';
 
 @Injectable()
 export class ReportsService {
-    constructor(
-        private readonly emailService: EmailService,
-        private readonly guest_bookService: Guest_BooksService,
-        @InjectRepository(Report)
-        private readonly reportReposiitory: Repository<Report>
-    ) { }
+  constructor(
+    private readonly emailService: EmailService,
+    private readonly guest_bookService: Guest_BooksService,
+    @InjectRepository(Report)
+    private readonly reportReposiitory: Repository<Report>,
+  ) {}
 
-    async get() {
-        return this.reportReposiitory.find();
-    }
+  async get() {
+    return this.reportReposiitory.find();
+  }
 
-    async getNotReviewed() {
-        return this.reportReposiitory.find({ where: { isReviewed: false } });
-    }
+  async getNotReviewed() {
+    return this.reportReposiitory.find({ where: { isReviewed: false } });
+  }
 
-    async report(reportData: ReportDto) {
-        const adminEmail = config.mailer.adminEmail;
-        const reportContents = `신고자 이메일:\n신고사유: ${reportData.reason}`;
-        await this.emailService.sendEmail('abcd@gmail.com', '방명록 신고', reportContents);
-        const guestBook = await this.guest_bookService.getOneById(reportData.id)
+  async report(reportData: ReportDto) {
+    const adminEmail = config.mailer.adminEmail;
+    const reportContents = `신고자 이메일:\n신고사유: ${reportData.reason}`;
+    await this.emailService.sendEmail(
+      'abcd@gmail.com',
+      '방명록 신고',
+      reportContents,
+    );
+    const guestBook = await this.guest_bookService.getOneById(reportData.id);
 
-        const report = this.reportReposiitory.create({
-            guestBookId: guestBook.id,
-            reason: reportData.reason,
-        });
-        await this.reportReposiitory.save(report);
+    const report = this.reportReposiitory.create({
+      guestBookId: guestBook.id,
+      reason: reportData.reason,
+    });
+    await this.reportReposiitory.save(report);
 
-        this.guest_bookService.hide(reportData.id);
+    this.guest_bookService.hide(reportData.id);
 
-        return { message: '신고가 접수되었습니다.' };
-    }
+    return { message: '신고가 접수되었습니다.' };
+  }
 
-    async restorePost(id: number) {
-        await this.guest_bookService.unHide(id);
-        await this.reportReposiitory.update(id, { isReviewed: true });
-        return;
-    }
+  async restorePost(id: number) {
+    await this.guest_bookService.unHide(id);
+    await this.reportReposiitory.update(id, { isReviewed: true });
+    return;
+  }
 }

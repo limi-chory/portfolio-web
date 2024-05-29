@@ -4,15 +4,15 @@ import { Guest_Book } from './guest_books.entity';
 
 @Entity()
 export class Report {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    reason: string;
+  @Column()
+  reason: string;
 
-    @Column()
-    guestBookId: number;
+  @Column()
+  guestBookId: number;
 
-    @Column({ default: false })
-    isReviewed: boolean = false;
+  @Column({ default: false })
+  isReviewed: boolean = false;
 }

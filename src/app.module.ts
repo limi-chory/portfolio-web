@@ -12,16 +12,23 @@ import { Skills } from './entities/skills.entity';
 import { Report } from './entities/report.entity';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'test',
-    password: 'test',
-    database: 'portfolioweb',
-    synchronize: true,
-    entities: [Diaries, Guest_Book, Portfolio, Skills, Report],
-  }), PortfolioModule, SkillsModule, DiariesModule, Guest_BooksModule, ReportsModule,],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'test',
+      password: 'test',
+      database: 'portfolioweb',
+      synchronize: true,
+      entities: [Diaries, Guest_Book, Portfolio, Skills, Report],
+    }),
+    PortfolioModule,
+    SkillsModule,
+    DiariesModule,
+    Guest_BooksModule,
+    ReportsModule,
+  ],
 })
 export class AppModule {
   constructor() {
