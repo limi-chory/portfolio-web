@@ -1,6 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import config from 'src/config';
 
 @Injectable()
 export class EmailService {
@@ -19,7 +18,7 @@ export class EmailService {
   async sendEmail(from: string, subject: string, text: string) {
     const mailOptions = {
       from: from,
-      to: 'kate010117@naver.com', //config.mailer.adminEmail,
+      to: 'cheolyeing@naver.com',
       subject: subject,
       text: text,
     };

@@ -7,10 +7,9 @@ async function bootstrap() {
   app.enableCors();
 
   const options = new DocumentBuilder()
-    .setTitle('Your API Title')
-    .setDescription('API Description')
+    .setTitle('APIs for Portfolio Web')
+    .setDescription("for soomin's portfolio-web")
     .setVersion('1.0')
-    .addTag('api')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
@@ -23,11 +22,7 @@ async function bootstrap() {
 
   SwaggerModule.setup('api-doc', app, document, swaggerOptions);
 
-  // app.useGlobalPipes(new ValidationPipe({
-  //   transform: true,
-  //   whitelist: true,
-  //   forbidNonWhitelisted: true,
-  // }))
   await app.listen(3000);
 }
+
 bootstrap();
