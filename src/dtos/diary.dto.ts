@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Diaries } from 'src/entities/diaries.entity';
 import { PageInfo } from './common.dto';
 
 export class CreateDiaryDto {
@@ -19,9 +18,26 @@ export class UpdateDiaryDto {
 }
 
 export class GetDiariesResponse {
-  @ApiProperty({ type: () => Diaries, isArray: true })
-  data: Diaries[];
+  @ApiProperty({ type: () => DiaryDto, isArray: true })
+  data: DiaryDto[];
 
   @ApiProperty()
   pageInfo: PageInfo;
+}
+
+export class DiaryDto {
+  @ApiProperty()
+  id: number;
+
+  @ApiProperty()
+  title: string;
+
+  @ApiProperty()
+  contents: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }

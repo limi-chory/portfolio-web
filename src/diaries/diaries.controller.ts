@@ -16,7 +16,7 @@ import {
   GetDiariesResponse,
   UpdateDiaryDto,
 } from 'src/dtos/diary.dto';
-import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Diaries } from 'src/entities/diaries.entity';
 
 @ApiTags('diaries')
@@ -25,7 +25,7 @@ export class DiariesController {
   constructor(private readonly diryService: DiariesService) {}
 
   @Get()
-  @ApiOkResponse({ type: GetDiariesResponse })
+  @ApiResponse({ type: GetDiariesResponse })
   @ApiQuery({
     name: 'page',
     required: true,

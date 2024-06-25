@@ -1,6 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateDiaryDto, UpdateDiaryDto } from 'src/dtos/diary.dto';
+import {
+  CreateDiaryDto,
+  GetDiariesResponse,
+  UpdateDiaryDto,
+} from 'src/dtos/diary.dto';
 import { Diaries } from 'src/entities/diaries.entity';
 import { Repository } from 'typeorm';
 
@@ -11,7 +15,7 @@ export class DiariesService {
     private readonly diariesRepository: Repository<Diaries>,
   ) {}
 
-  async get(page: number, size: number) {
+  async get(page: number, size: number): Promise<GetDiariesResponse> {
     const [data, total] = await this.diariesRepository.findAndCount({
       skip: (page - 1) * size,
       take: size,
