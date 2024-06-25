@@ -1,21 +1,38 @@
 {
   "compilerOptions": {
+    // path
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    // module
     "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    // compile
+    "allowJs": true,
+    "noEmit": false,
+    "jsx": "react",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true,
+    "target": "es2019",
+    // lint
     "strictNullChecks": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": true,
     "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "strict": true,
+    "noUnusedLocals": true,
+    // etc
+    "importHelpers": true,
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "noErrorTruncation": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["node_modules/@types"],
+    "useUnknownInCatchVariables": false
+  },
+  "exclude": ["node_modules"],
+  "include": ["./packages/**/*"]
 }
